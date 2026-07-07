@@ -49,6 +49,37 @@ def guardar_habitaciones(habitaciones):
         archivo.write(linea)
     archivo.close()
 
+def cargar_huespedes():
+    huespedes = []
+    
+    if not os.path.exists(ARCHIVO_HUESPEDES):
+        return huespedes
+
+    archivo = open(ARCHIVO_HUESPEDES, "r", encoding="utf-8")
+    for linea in archivo:
+        linea = linea.strip()
+        if linea != "":
+            partes = linea.split(",")
+            huesped = {
+                "nombre":     partes[0],
+                "dni":        partes[1],
+                "habitacion": int(partes[2]),
+                "noches":     int(partes[3]),
+                "total":      int(partes[4])
+            }
+            huespedes.append(huesped)
+    archivo.close()
+
+    return huespedes
+
+
+def guardar_huespedes(huespedes):
+    archivo = open(ARCHIVO_HUESPEDES, "w", encoding="utf-8")
+    for h in huespedes:
+        linea = h["nombre"] + "," + h["dni"] + "," + str(h["habitacion"]) + "," + str(h["noches"]) + "," + str(h["total"]) + "\n"
+        archivo.write(linea)
+    archivo.close()
+
 def main():
     print("Bienvenido al Sistema de Gestion de Hotel!")
 

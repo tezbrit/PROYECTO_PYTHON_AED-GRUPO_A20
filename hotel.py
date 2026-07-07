@@ -5,14 +5,14 @@ ARCHIVO_HUESPEDES    = "huespedes.txt"
 
 def habitaciones_por_defecto():
     return [
-        {"numero": 101, "tipo": "Simple", "precio": 15000, "estado": "disponible", "dni": ""},
-        {"numero": 102, "tipo": "Simple", "precio": 15000, "estado": "disponible", "dni": ""},
-        {"numero": 103, "tipo": "Simple", "precio": 15000, "estado": "disponible", "dni": ""},
-        {"numero": 201, "tipo": "Doble",  "precio": 25000, "estado": "disponible", "dni": ""},
-        {"numero": 202, "tipo": "Doble",  "precio": 25000, "estado": "disponible", "dni": ""},
-        {"numero": 203, "tipo": "Doble",  "precio": 25000, "estado": "disponible", "dni": ""},
-        {"numero": 301, "tipo": "Suite",  "precio": 45000, "estado": "disponible", "dni": ""},
-        {"numero": 302, "tipo": "Suite",  "precio": 45000, "estado": "disponible", "dni": ""},
+        {"numero": 101, "tipo": "Simple", "precio": 45000, "estado": "disponible", "dni": ""},
+        {"numero": 102, "tipo": "Simple", "precio": 45000, "estado": "disponible", "dni": ""},
+        {"numero": 103, "tipo": "Simple", "precio": 45000, "estado": "disponible", "dni": ""},
+        {"numero": 201, "tipo": "Doble",  "precio": 85000, "estado": "disponible", "dni": ""},
+        {"numero": 202, "tipo": "Doble",  "precio": 85000, "estado": "disponible", "dni": ""},
+        {"numero": 203, "tipo": "Doble",  "precio": 85000, "estado": "disponible", "dni": ""},
+        {"numero": 301, "tipo": "Suite",  "precio": 100000, "estado": "disponible", "dni": ""},
+        {"numero": 302, "tipo": "Suite",  "precio": 100000, "estado": "disponible", "dni": ""},
     ]
 
 def cargar_habitaciones():

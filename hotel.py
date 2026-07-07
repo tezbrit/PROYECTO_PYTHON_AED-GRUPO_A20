@@ -269,6 +269,63 @@ def ver_huespedes_actuales(huespedes):
 
     print("Total de huespedes: " + str(len(huespedes)))
 
+def ver_estadisticas(habitaciones, huespedes):
+    print("")
+    print("=== Estadisticas del hotel ===")
+
+    total_simple    = 0
+    total_doble     = 0
+    total_suite     = 0
+    ocupadas_simple = 0
+    ocupadas_doble  = 0
+    ocupadas_suite  = 0
+    recaudacion     = 0  
+
+    for hab in habitaciones:
+        if hab["tipo"] == "Simple":
+            total_simple += 1
+            if hab["estado"] == "ocupada":
+                ocupadas_simple += 1
+        elif hab["tipo"] == "Doble":
+            total_doble += 1
+            if hab["estado"] == "ocupada":
+                ocupadas_doble += 1
+        elif hab["tipo"] == "Suite":
+            total_suite += 1
+            if hab["estado"] == "ocupada":
+                ocupadas_suite += 1
+
+    for h in huespedes:
+        recaudacion += h["total"]
+
+    total_ocupadas   = ocupadas_simple + ocupadas_doble + ocupadas_suite
+    total_disponibles = len(habitaciones) - total_ocupadas
+
+    print("Total de habitaciones: " + str(len(habitaciones)))
+    print("Ocupadas:              " + str(total_ocupadas))
+    print("Disponibles:           " + str(total_disponibles))
+    print("")
+    print("Simple -> " + str(ocupadas_simple) + "/" + str(total_simple) + " ocupadas")
+    print("Doble  -> " + str(ocupadas_doble)  + "/" + str(total_doble)  + " ocupadas")
+    print("Suite  -> " + str(ocupadas_suite)  + "/" + str(total_suite)  + " ocupadas")
+    print("")
+    print("Recaudacion actual: $" + str(recaudacion))
+    print("Huespedes actuales: " + str(len(huespedes)))
+
+
+    if total_ocupadas > 0:
+        tipo_mas_solicitado = "Simple"
+        max_ocupadas = ocupadas_simple
+
+        if ocupadas_doble > max_ocupadas:
+            max_ocupadas = ocupadas_doble
+            tipo_mas_solicitado = "Doble"
+
+        if ocupadas_suite > max_ocupadas:
+            tipo_mas_solicitado = "Suite"
+
+        print("Tipo mas solicitado: " + tipo_mas_solicitado)
+
 def main():
     print("Bienvenido al Sistema de Gestion de Hotel!")
 

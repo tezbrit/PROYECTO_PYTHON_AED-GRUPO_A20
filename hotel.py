@@ -80,6 +80,35 @@ def guardar_huespedes(huespedes):
         archivo.write(linea)
     archivo.close()
 
+def mostrar_menu():
+    print("")
+    print("=" * 40)
+    print("   SISTEMA DE GESTION DE HOTEL")
+    print("=" * 40)
+    print("  1. Ver habitaciones disponibles")
+    print("  2. Registrar huesped (Check-in)")
+    print("  3. Realizar Check-out")
+    print("  4. Ver huespedes actuales")
+    print("  5. Ver estadisticas del hotel")
+    print("  6. Salir")
+    print("=" * 40)
+
+def ver_habitaciones_disponibles(habitaciones):
+    print("")
+    print("=== Habitaciones disponibles ===")
+
+    disponibles = 0
+    
+    for hab in habitaciones:
+        if hab["estado"] == "disponible":
+            print("Habitacion " + str(hab["numero"]) + " | " + hab["tipo"] + " | $" + str(hab["precio"]) + " por noche")
+            disponibles += 1
+
+    if disponibles == 0:
+        print("No hay habitaciones disponibles en este momento.")
+    else:
+        print("Total disponibles: " + str(disponibles))
+
 def main():
     print("Bienvenido al Sistema de Gestion de Hotel!")
 

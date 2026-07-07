@@ -212,6 +212,50 @@ def registrar_huesped(habitaciones, huespedes):
     print("Noches:     " + str(noches))
     print("Total:      $" + str(total))
 
+def hacer_checkout(habitaciones, huespedes):
+    print("")
+    print("=== Check-out ===")
+
+    if len(huespedes) == 0:
+        print("No hay huespedes registrados actualmente.")
+        return
+
+    dni = input("Ingresa el DNI del huesped: ").strip()
+
+    huesped_encontrado = None
+    for h in huespedes:
+        if h["dni"] == dni:
+            huesped_encontrado = h
+            break
+
+    if huesped_encontrado is None:
+        print("No se encontro ningun huesped con ese DNI.")
+        return
+
+    print("")
+    print("Huesped:    " + huesped_encontrado["nombre"])
+    print("Habitacion: " + str(huesped_encontrado["habitacion"]))
+    print("Noches:     " + str(huesped_encontrado["noches"]))
+    print("Total:      $" + str(huesped_encontrado["total"]))
+
+    confirmacion = input("Confirmar check-out? (s/n): ").strip().lower()
+    if confirmacion != "s":
+        print("Check-out cancelado.")
+        return
+
+    for hab in habitaciones:
+        if hab["numero"] == huesped_encontrado["habitacion"]:
+            hab["estado"] = "disponible"
+            hab["dni"]    = ""
+            break
+
+    huespedes.remove(huesped_encontrado)
+
+    guardar_habitaciones(habitaciones)
+    guardar_huespedes(huespedes)
+
+    print("Check-out realizado. Hasta la proxima, " + huesped_encontrado["nombre"] + "!")
+
 def main():
     print("Bienvenido al Sistema de Gestion de Hotel!")
 

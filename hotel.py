@@ -109,6 +109,109 @@ def ver_habitaciones_disponibles(habitaciones):
     else:
         print("Total disponibles: " + str(disponibles))
 
+def registrar_huesped(habitaciones, huespedes):
+    print("")
+    print("=== Registro de huesped (Check-in) ===")
+
+    hay_disponibles = False
+    for hab in habitaciones:
+        if hab["estado"] == "disponible":
+            hay_disponibles = True
+            break
+
+    if not hay_disponibles:
+        print("No hay habitaciones disponibles en este momento.")
+        return
+
+    nombre = input("Nombre completo del huesped: ").strip()
+    if nombre == "":
+        print("El nombre no puede estar vacio.")
+        return
+
+    dni = ""
+    while True:
+        dni = input("DNI del huesped: ").strip()
+        if dni.isdigit() and len(dni) >= 7:
+            break
+        print("DNI invalido. Ingresa solo numeros (minimo 7 digitos).")
+
+    for h in huespedes:
+        if h["dni"] == dni:
+            print("Ese DNI ya tiene una reserva activa.")
+            return
+
+
+    print("")
+    print("Tipos de habitacion:")
+    print("  1. Simple  - $15000 por noche")
+    print("  2. Doble   - $25000 por noche")
+    print("  3. Suite   - $45000 por noche")
+
+    tipo_elegido = ""
+    while True:
+        opcion_tipo = input("Elegi el tipo (1/2/3): ").strip()
+        if opcion_tipo == "1":
+            tipo_elegido = "Simple"
+            break
+        elif opcion_tipo == "2":
+            tipo_elegido = "Doble"
+            break
+        elif opcion_tipo == "3":
+            tipo_elegido = "Suite"
+            break
+        else:
+            print("Opcion invalida. Elegi 1, 2 o 3.")
+
+
+    habitacion_asignada = None
+    for hab in habitaciones:
+        if hab["tipo"] == tipo_elegido and hab["estado"] == "disponible":
+            habitacion_asignada = hab
+            break
+
+    if habitacion_asignada is None:
+        print("No hay habitaciones de tipo " + tipo_elegido + " disponibles en este momento")
+        return
+
+
+    noches = 0
+    while noches <= 0:
+        noches_str = input("Cantidad de noches: ").strip()
+        if noches_str.isdigit():
+            noches = int(noches_str)
+            if noches <= 0:
+                print("La cantidad debe ser mayor a 0")
+        else:
+            print("Ingresa un número válido")
+
+
+    total = habitacion_asignada["precio"] * noches
+
+    # Marcar habitación como ocupada
+    habitacion_asignada["estado"] = "ocupada"
+    habitacion_asignada["dni"]    = dni
+
+
+    nuevo_huesped = {
+        "nombre":     nombre,
+        "dni":        dni,
+        "habitacion": habitacion_asignada["numero"],
+        "noches":     noches,
+        "total":      total
+    }
+    huespedes.append(nuevo_huesped)
+
+    guardar_habitaciones(habitaciones)
+    guardar_huespedes(huespedes)
+
+    print("")
+    print("Check-in realizado con exito")
+    print("Huesped:    " + nombre)
+    print("DNI:        " + dni)
+    print("Habitacion: " + str(habitacion_asignada["numero"]) + " (" + tipo_elegido + ")")
+    print("Noches:     " + str(noches))
+    print("Total:      $" + str(total))
+
 def main():
     print("Bienvenido al Sistema de Gestion de Hotel!")
 

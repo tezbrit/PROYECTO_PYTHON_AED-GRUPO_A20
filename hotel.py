@@ -256,6 +256,19 @@ def hacer_checkout(habitaciones, huespedes):
 
     print("Check-out realizado. Hasta la proxima, " + huesped_encontrado["nombre"] + "!")
 
+def ver_huespedes_actuales(huespedes):
+    print("")
+    print("=== Huespedes actuales ===")
+
+    if len(huespedes) == 0:
+        print("No hay huespedes registrados actualmente.")
+        return
+
+    for h in huespedes:
+        print("- " + h["nombre"] + " | DNI: " + h["dni"] + " | Hab: " + str(h["habitacion"]) + " | Noches: " + str(h["noches"]) + " | Total: $" + str(h["total"]))
+
+    print("Total de huespedes: " + str(len(huespedes)))
+
 def main():
     print("Bienvenido al Sistema de Gestion de Hotel!")
 

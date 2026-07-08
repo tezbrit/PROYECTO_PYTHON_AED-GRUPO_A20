@@ -1,0 +1,8 @@
+101,Simple,45000,disponible,
+102,Simple,45000,disponible,
+103,Simple,45000,disponible,
+201,Doble,85000,disponible,
+202,Doble,85000,disponible,
+203,Doble,85000,disponible,
+301,Suite,100000,disponible,
+302,Suite,100000,disponible,

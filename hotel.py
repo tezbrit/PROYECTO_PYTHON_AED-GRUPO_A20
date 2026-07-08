@@ -143,9 +143,9 @@ def registrar_huesped(habitaciones, huespedes):
 
     print("")
     print("Tipos de habitacion:")
-    print("  1. Simple  - $15000 por noche")
-    print("  2. Doble   - $25000 por noche")
-    print("  3. Suite   - $45000 por noche")
+    print("  1. Simple  - $45000 por noche")
+    print("  2. Doble   - $85000 por noche")
+    print("  3. Suite   - $100000 por noche")
 
     tipo_elegido = ""
     while True:
